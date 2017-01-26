@@ -1,0 +1,156 @@
+.content {
+  margin-top: 50px;
+}
+.undecorated-link:hover {
+  text-decoration: none;
+}
+[ng\:cloak],
+[ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.header-profile-image {
+  opacity: 0.8;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.open .header-profile-image,
+a:hover .header-profile-image {
+  opacity: 1;
+}
+.user-header-dropdown-toggle {
+  padding-top: 11px !important;
+  padding-bottom: 11px !important;
+}
+.error-text {
+  display: none;
+}
+.has-error .help-block.error-text {
+  display: block;
+}
+.has-error .help-inline.error-text {
+  display: inline;
+}
+
+.container{
+  padding-top: 130px;
+}
+
+.content {
+  background: url('/modules/core/client/img/brand/Aqua-Hack-Website_bg.jpg');
+  background-size: 100%;
+  margin-top: 0;
+  background-repeat: no-repeat;
+}
+
+.jumbotron {
+ background-color: rgba(255, 255, 255, 0);
+  padding-top: 20px;
+}
+
+/* This is styling for navigation bar */
+.navbar {
+  margin-bottom: 30px;
+}
+
+.navbar-inverse{
+  background-image: none;
+  background-color: rgba(7, 39, 66, 0.66);
+  border: none;
+}
+
+/* This is the image on the home page */
+img {
+  vertical-align: middle;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/*This is the welcome text on the home page*/
+.lead {
+  font-size: 15px;
+}
+
+.ng-scope {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.nav.navbar-nav.ng-scope{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/* logo position */
+.navbar-brand {
+  height: 90px
+}
+
+/* navbar padding */
+.nav.navbar-nav.navbar-right {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/*!* somehow have to disable bg image to */
+/*.dropdown-toggle.ng-binding.ng-scope {*/
+  /*background-image: none;*/
+/*}*/
+
+/* make the block blue after highlight */
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-image: none;
+  color: #fff;
+  background-color: #00b3ee;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  background-image: none;
+  color: #fff;
+  background-color: #00b3ee;
+}
+
+/* change dropdown menu bkground color */
+.dropdown-menu {
+  background-color: #00b3ee;
+}
+
+
+/* right navigation styling */
+.nav.navbar-nav.navbar-right a{
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Left navigation styling */
+.nav.navbar-nav.ng-scope a{
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: white;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+.bold-h4{
+  font-weight:bold;
+  font-size:20px;
+}
+
+.dataset_text:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.dataset_text{
+  color: black;
+  text-decoration: none;
+}

@@ -1,0 +1,79 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.dataset._id ? 'Edit Dataset' : 'New Dataset'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.datasetForm" enctype="multipart/form-data" class="form-horizontal" ng-submit="vm.save(vm.form.datasetForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.dataset.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.datasetForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Dataset name is required.</p>
+          </div>
+
+          <label class="control-label" for="description">Description</label>
+          <input name="description" type="text" ng-model="vm.dataset.description" id="description" class="form-control" placeholder="Description" required>
+          <div ng-messages="vm.form.datasetForm.description.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Dataset Description name is required.</p>
+          </div>
+
+          <label class="control-label" for="type">Data Type</label>
+          <input name="type" type="text" ng-model="vm.dataset.type" id="type" class="form-control" placeholder="Data Type" required>
+          <div ng-messages="vm.form.datasetForm.type.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Dataset type is required.</p>
+          </div>
+
+          <label class="control-label" for="organization">Organization</label>
+          <input name="organization" type="text" ng-model="vm.dataset.organization" id="organization" class="form-control" placeholder="Organization">
+
+          <label class="control-label" for="organization">Web Link</label>
+          <input name="weblink" type="text" ng-model="vm.dataset.weblink" id="weblink" class="form-control" placeholder="Weblink">
+
+          <label class="control-label" for="documentations">Documentations</label>
+          <input name="documentations" type="file" ngf-select ng-model="vm.dataset.documentations" id="documentations"
+                 ngf-max-size="2000MB"  multiple>
+          <ul>
+            <li ng-repeat="f in files">
+              {{f.name}}
+            </li>
+          </ul>
+          {{errorMsg}}
+          <br>
+
+          <label class="control-label" for="category">Category</label>
+          <select name="category" ng-model="vm.dataset.category" id="category" class="form-control" multiple>
+            <option>Connecting Communities</option>
+            <option>Aging Water System</option>
+            <option>Nutrient Loading and Algal Blooms</option>
+            <option>Invasive Speices</option>
+            <option>Legacy Pollution</option>
+            <option>Reusing Dredged Sediment</option>
+          </select>
+
+
+          <label class="control-label" for="files">Files</label>
+          <input name="files" type="file" ngf-select ng-model="vm.dataset.files" id="files"
+                 ngf-max-size="2000MB"  multiple>
+
+          <ul>
+            <li ng-repeat="f in files">
+              {{f.name}}
+            </li>
+          </ul>
+          <span class="progress" ng-show="progress >= 0">
+              <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+          </span>
+          {{errorMsg}}
+
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default" >{{vm.dataset._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+<section>
+  <div class="jumbotron" style = "background-color: rgba(255,255,255,0.5)">
+    <h2 style="font-weight:500;text-align: center" ng-bind="vm.dataset.name"></h2>
+    <span><b>Categories:</b> <a class='dataset_text' ng-repeat="category in vm.dataset.category">{{category}}</a></span><br>
+    <span><b>Tags:</b> <a class='dataset_text' ng-repeat="tag in vm.dataset.tags">{{tag}}</a></span><br>
+    <br>
+    <a class='dataset_text' ng-bind="vm.dataset.description"></a>
+    <br>
+    <br>
+    <h4 class="bold-h4">Organization</h4>
+    <a class='dataset_text' ng-bind="vm.dataset.organization"></a>
+    <br>
+    <br>
+    <h4 class="bold-h4">Data Type</h4>
+    <a class='dataset_text' ng-bind="vm.dataset.type"></a>
+    <br>
+    <br>
+    <h4 class="bold-h4">Web Link</h4>
+    <a ng-bind="vm.dataset.weblink" ng-href = "{{vm.dataset.weblink}}"></a>
+    <br>
+    <br>
+    <h4 class="bold-h4">Documentations</h4>
+    <ul style="list-style: none;padding-left:0;" ng-repeat="name in vm.dataset.documentations_filenames" target="_blank">
+      <a target="_self" href="/api/downloads?filename={{name}}">{{ name }}
+      </a>
+    </ul>
+    <br>
+    <br>
+    <h4 class="bold-h4">Data Files</h4>
+    <ul style="list-style: none;padding-left:0;" ng-repeat="name in vm.dataset.filenames">
+      <a target="_self" href="/api/downloads?filename={{name}}">{{ name }}
+      </a>
+    </ul>
+    <br>
+    <br>
+
+  </div>
+  <div class="pull-right"
+       ng-show="vm.dataset.isCurrentUserOwner || vm.dataset.isAdmin">
+    <a class="btn btn-primary"
+       ui-sref="datasets.edit({ datasetId: vm.dataset._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.dataset.remove;">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.dataset.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.dataset.user"
+            ng-bind="vm.dataset.user.displayName"></span>
+      <span ng-if="!vm.dataset.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.dataset.content"></p>
+</section>

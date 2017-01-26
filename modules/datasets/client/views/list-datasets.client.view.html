@@ -1,0 +1,67 @@
+<section>
+  <div class="alert alert-info col-md-3 dataset_list" >
+    <h2>Datasets</h2>
+    <br>
+    <p>Sort By: {{ vm.sortType }}</p>
+    <select ng-model="vm.sortType">
+      <option value="name">Name</option>
+      <option value="created">Time Created</option>
+      <option value="category">Category</option>
+    </select>
+    <br>
+    <p>Filter by Category:</p>
+    <select ng-model="vm.categorySelected">
+      <option>Connecting Communities</option>
+      <option>Aging Water System</option>
+      <option>Nutrient Loading and Algal Blooms</option>
+      <option>Invasive Speices</option>
+      <option>Legacy Pollution</option>
+      <option>Reusing Dredged Sediment</option>
+    </select>
+    <br>
+    <p>Filter by Tag:</p>
+    <select ng-model="vm.tagSelected">
+      <option ng-repeat="dataset in vm.datasets | unique:'tag'" value ="{{dataset.tag}}">{{dataset.tag}}</option>"
+    </select>
+    <br>
+    <br>
+    <input class="form-control" placeholder="Search by Dataset Name" ng-model="vm.searchDataset">
+    <br>
+    <button ng-click="vm.tagSelected = undefined; vm.categorySelected = undefined; vm.searchDataset = undefined">
+      Clear Filter
+    </button>
+
+  </div>
+
+  <div class="list-group col-md-9">
+    <a ng-repeat="dataset in vm.datasets | orderBy:vm.sortType:vm.sortReverse | filter: {name: vm.searchDataset,
+        category: vm.categorySelected}"
+       ui-sref="datasets.view({ datasetId: dataset._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Organization:
+        <span ng-bind="dataset.organization | date:'mediumDate'"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="dataset.name"></h4>
+      <small class="list-group-item-text">
+        Categories: <span ng-repeat="category in dataset.category">{{category}}</span><br>
+      </small>
+      <small class="list-group-item-text">
+        Tags:<span ng-repeat="tag in dataset.tags">{{tag}}</span><br>
+      </small>
+      <div class="pull-right"
+           ng-show="vm.dataset.isCurrentUserOwner || vm.dataset.isAdmin">
+        <a class="btn btn-primary"
+           ui-sref="datasets.edit({ datasetId: vm.dataset._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.dataset.remove;">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.datasets.$resolved && !vm.datasets.length">
+    No Datasets yet, why don't you <a ui-sref="datasets.create">create one</a>?
+  </div>
+</section>
