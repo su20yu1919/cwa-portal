@@ -13,7 +13,7 @@
           </div>
 
           <label class="control-label" for="description">Description</label>
-          <input name="description" type="text" ng-model="vm.dataset.description" id="description" class="form-control" placeholder="Description" required>
+          <textarea name="description" type="text" ng-model="vm.dataset.description" id="description" class="form-control" placeholder="Description" required></textarea>
           <div ng-messages="vm.form.datasetForm.description.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Dataset Description name is required.</p>
           </div>

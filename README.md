@@ -40,8 +40,9 @@ Datasets have three views: the dataset list, the dataset view, and dataset creat
 Things in general to do that still need finish:
 
 * Update dataset with new files or delete existing files (maybe a dedicated dataset management interface)
-* Delete dataset files when the dataset itself is deleted
-* Some small UI bugs in the dataset creation page
+* Delete dataset files when the dataset itself is deleted (completed, but bulk delete crashes the server)
+* Some small UI bugs in the dataset creation page (sometimes error message does not show)
+* Figure out a way to distinguish files with the same name.
 
 ####*Dataset List*
 
@@ -60,6 +61,9 @@ in the callback.
 Things to do here:
 
 * For each dataset, for admin, add two buttons to remove and edit datasets
+* Another that I haven't had time to figure out, is when filtering for category, I want to display a list of unique categories.
+However, a dataset might have multiple categories, so we need a way to, in controller, look into each dataset and come up with a list
+of unique categories. A workaround of the problem is to just manually define all the categories and not worry about it. Same apply for tags.
 
 
 ####*Dataset View*
@@ -79,7 +83,7 @@ but functioning. Few things to do here:
 This is the same as the dataset creation page, default of Yo generated modules. However, right now you can't update or delete files
 already uploaded. You have to delete the entire dataset to do it. Few things to do:
 
-* You can create an entirly new layout for the page, that offers a file management system. But conceptually it is pretty complex
+* You can create an entirely new layout for the page, that offers a file management system. But conceptually it is pretty complex
 since you need to interact with the File data model. You can choose to keep it as is since users won't be able to see it.
 
 ####Toolkit

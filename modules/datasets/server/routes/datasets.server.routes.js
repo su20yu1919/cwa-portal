@@ -9,6 +9,8 @@ var datasetsPolicy = require('../policies/datasets.server.policy'),
   mongoose = require('mongoose'),
   File = mongoose.model('File');
 
+var fs = require('fs');
+
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './uploads/');
@@ -73,6 +75,45 @@ module.exports = function (app) {
         res.download(url, req.query.filename);
       }
     });
+    
+
+  });
+
+  // This is where you delete the file
+  app.delete('/api/delete_file', function (req, res) {
+    var result;
+    console.log(req.query.filename);
+    //Find and delete file
+    File.findOne({
+      "originalname": req.query.filename
+    }).select('filename').exec(function (err, file) {
+      if (err) {
+        console.log('Error Finding File Specified');
+      } else if (!file) {
+        console.log("Can't find the file");
+      } else {
+        
+        console.log(file);
+        result = file.filename;
+        var url = "./uploads/" + result;
+
+        // Find and delete file link
+        File.findOne({
+          "originalname": req.query.filename
+        }).remove().exec(function (err){
+          if(err){
+            console.log(err);
+          }
+        });
+
+        //use file system to unlink the file
+        fs.unlink(url, function(err){
+          if(err) return console.log(err);
+          console.log('file deleted successfully');
+        });
+      }
+    });
+
   });
   
   

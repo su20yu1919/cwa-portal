@@ -19,7 +19,7 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
       resources: '/api/datasets/:datasetId',
-      permissions: ['get']
+      permissions: ['get', 'delete']
     }, {
       resources: '/api/uploads',
       permissions: ['post']
