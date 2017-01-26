@@ -24,7 +24,7 @@ Few things to perhaps add:
 * The "forgot password" feature did not work when I tested it locally, test it after deloyment to make sure it is functioning correctly
 * CWA also requested a more comprehensive "Data Sharing Agreement" to be signed when user register. As of now I only put a phrase in that state the agreement,
 check with CWA to make sure if the sharing-agreement as-is is okay or they need a pop-up and checkbox when user registers.
-* Add ReCAPTHA to registration, to prevent bot traffic.
+* Add ReCAPTHA to registration, to prevent bot traffic. [Tutorial](https://codeforgeek.com/2016/03/google-recaptcha-node-js-tutorial/)
 
 ### HomePage
 
