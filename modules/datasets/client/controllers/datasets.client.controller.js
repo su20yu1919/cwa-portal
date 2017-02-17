@@ -37,31 +37,11 @@
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         for (var j = 0, length = vm.dataset.filenames.length; j < length; j++) {
-          $http.delete("/api/delete_file?filename=" + vm.dataset.filenames[j])
-            .then(
-              function(response){
-                console.log(response);
-                console.log("Deleted a File");
-              },
-              function(response){
-                console.log(response);
-                console.log("Can't delete file");
-              }
-            );
+          $http.delete("/api/delete_file?filename=" + vm.dataset.filenames[j]);
         }
         
-        for (var i = 0, length = vm.dataset.documentations_filenames.length; i < length; i++) {
-          $http.delete("/api/delete_file?filename=" + vm.dataset.documentations_filenames[i])
-            .then(
-              function(response){
-                console.log(response);
-                console.log("Deleted a File");
-              },
-              function(response){
-                console.log(response);
-                console.log("Can't delete file");
-              }
-            );
+        for (var i = 0, len = vm.dataset.documentations_filenames.length; i < len; i++) {
+          $http.delete("/api/delete_file?filename=" + vm.dataset.documentations_filenames[i]);
         }
         vm.dataset.$remove($state.go('datasets.list'));
       }

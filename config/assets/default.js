@@ -19,7 +19,6 @@ module.exports = {
         'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/ng-file-upload/ng-file-upload-shim.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
-        'public/lib/angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
