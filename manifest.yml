@@ -4,10 +4,11 @@ declared-services:
     label: mongodb
     plan: 100
 applications:
-- name: mean
-  host: mean-${random-word}
+- name: erie-hack-portal
+  host: erie-hack-portal
   memory: 128M
   services:
   - mean-mongo
+  - hack-file-storage
   env:
     NODE_ENV: cloud-foundry

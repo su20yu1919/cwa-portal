@@ -11,14 +11,52 @@ var datasetsPolicy = require('../policies/datasets.server.policy'),
 
 var fs = require('fs');
 
-var storage = multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, './uploads/');
-  },
-  filename: function (req, file, callback) {
-    callback(null, file.fieldname + '-' + Date.now());
+var pkgcloud = require('pkgcloud');
+var pkgcloudStorage = require('multer-storage-pkgcloud');
+
+var config = {
+  provider: 'openstack',
+  useServiceCatalog: true,
+  useInternal: false,
+  keystoneAuthVersion: 'v3',
+  authUrl: 'https://identity.open.softlayer.com',
+  tenantId: 'df3d1c7671eb4bd5bfb7fb9bd5b99329',    //projectId from credentials
+  domainId: 'dbcedc6cd3ee4870ab6e763b3c45892f',
+  username: 'admin_5ab847bf860f65620161f50ca604971e7d742d50',
+  password: 'w=Jptk3?2~CoSo=E',
+  region: 'dallas'   //dallas or london region
+};
+
+var storageClient = pkgcloud.storage.createClient(config);
+
+storageClient.auth(function(err) {
+  if (err) {
+    console.error(err);
+  }
+  else {
+    
   }
 });
+
+var storage = pkgcloudStorage({
+  client: storageClient,
+  destination: function (req, file, cb) {
+    cb(null, {
+      container: 'erie-hack',
+      remote: file.fieldname + '-' + Date.now()
+    });
+  }
+});
+
+// var storage = multer.diskStorage({
+//   destination: function (req, file, callback) {
+//     callback(null, './uploads/');
+//   },
+//   filename: function (req, file, callback) {
+//     callback(null, file.fieldname + '-' + Date.now());
+//   }
+// });
+
 var upload = multer({
   storage: storage
 }).fields([{
@@ -50,6 +88,8 @@ module.exports = function (app) {
         return res.end('Error uploading file.');
       }
       res.json(req.files);
+      console.log(req.files.files);
+      console.log('upload successful');
       for (var j = 0, length = req.files.files.length; j < length; j++) {
         datasets.create_file(req.files.files[j]);
       }
@@ -69,10 +109,14 @@ module.exports = function (app) {
       } else if (!file) {
         console.log("Can't find the file");
       } else {
+        res.setHeader('Content-disposition', 'attachment; filename=' + req.query.filename);
         console.log(file);
         result = file.filename;
-        var url = "./uploads/" + result;
-        res.download(url, req.query.filename);
+        storageClient.download({
+          container: 'erie-hack',
+          remote: result
+        }).pipe(res);
+        // res.download(url, req.query.filename);
       }
     });
     
@@ -94,8 +138,6 @@ module.exports = function (app) {
       } else {
         
         console.log(file);
-        result = file.filename;
-        var url = "./uploads/" + result;
 
         // Find and delete file link
         File.findOne({
@@ -106,11 +148,13 @@ module.exports = function (app) {
           }
         });
 
-        //use file system to unlink the file
-        fs.unlink(url, function(err){
-          if(err) return console.log(err);
-          console.log('file deleted successfully');
-        });
+        //remove the file from service
+        storageClient.removeFile('erie-hack', result, function(err){
+          if (err){
+            console.log(err);
+          }
+          console.log('successfully deleted');
+        })
       }
     });
 

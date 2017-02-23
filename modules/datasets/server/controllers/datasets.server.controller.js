@@ -30,7 +30,11 @@ exports.create = function(req, res) {
 };
 
 exports.create_file = function(input_file){
-  var file = new File(input_file);
+  var file = new File({
+    filename: input_file.remote,
+    originalname: input_file.originalname
+                              
+  });
   console.log(input_file);
   file.save(function(err) {
     if (err) {

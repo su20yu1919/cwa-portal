@@ -14,15 +14,15 @@
       <option>Connecting Communities</option>
       <option>Aging Water System</option>
       <option>Nutrient Loading and Algal Blooms</option>
-      <option>Invasive Speices</option>
+      <option>Invasive Spices</option>
       <option>Legacy Pollution</option>
       <option>Reusing Dredged Sediment</option>
     </select>
     <br>
-    <p>Filter by Tag:</p>
-    <select ng-model="vm.tagSelected">
-      <option ng-repeat="dataset in vm.datasets | unique:'tag'" value ="{{dataset.tag}}">{{dataset.tag}}</option>"
-    </select>
+    <!--<p>Filter by Tag:</p>-->
+    <!--<select ng-model="vm.tagSelected">-->
+      <!--<option ng-repeat="dataset in vm.datasets | unique:'tag'" value ="{{dataset.tag}}">{{dataset.tag}}</option>"-->
+    <!--</select>-->
     <br>
     <br>
     <input class="form-control" placeholder="Search by Dataset Name" ng-model="vm.searchDataset">
