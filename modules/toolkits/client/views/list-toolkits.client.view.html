@@ -1,0 +1,38 @@
+<section>
+  <div class="alert alert-info col-md-3 dataset_list" >
+    <h2>Toolkits</h2>
+    <br>
+    <input class="form-control" placeholder="Search by Toolkit Name" ng-model="vm.searchToolkit">
+    <br>
+    <button ng-click="vm.searchToolkit = undefined">
+      Clear Search
+    </button>
+
+  </div>
+
+  <div class="list-group col-md-9">
+    <a ng-repeat="toolkit in vm.toolkits | filter: {name: vm.searchToolkit}"
+       ui-sref="toolkits.view({ toolkitId: toolkit._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Organization:
+        <span ng-bind="toolkit.organization | date:'mediumDate'"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="toolkit.name"></h4>
+      <div class="pull-right"
+           ng-show="vm.toolkit.isCurrentUserOwner || vm.toolkit.isAdmin">
+        <a class="btn btn-primary"
+           ui-sref="datasets.edit({ toolkitId: vm.toolkit._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="vm.toolkit.remove;">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.toolkits.$resolved && !vm.toolkits.length">
+    No Toolkits yet, why don't you <a ui-sref="toolkits.create">create one</a>?
+  </div>
+</section>
+

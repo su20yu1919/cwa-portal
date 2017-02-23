@@ -2,9 +2,9 @@
 
 module.exports = {
   app: {
-    title: 'AquaHacking 2016 Portal',
-    description: 'Data Portal for AquaHacking 2016',
-    keywords: 'aquahacking, data portal, hackathon',
+    title: 'Erie Hack 2017 Portal',
+    description: 'Data Portal for Erie Hack 2017',
+    keywords: 'erie hack, data portal, hackathon',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   port: process.env.PORT || 3000,

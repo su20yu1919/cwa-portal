@@ -1,0 +1,36 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.toolkit.name"></h1>
+  </div>
+    <a class='dataset_text' ng-bind="vm.toolkit.description"></a>
+  <br>
+  <br>
+  <h4 class="bold-h4">Organization</h4>
+  <a class='dataset_text' ng-bind="vm.toolkit.organization"></a>
+  <br>
+  <h4 class="bold-h4">Web Link</h4>
+    <a ng-bind="vm.toolkit.weblink" ng-href = "{{vm.toolkit.weblink}}"></a>
+  <br>
+  <div class="pull-right"
+       ng-show="vm.toolkit.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="toolkits.edit({ toolkitId: vm.toolkit._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.toolkit.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.toolkit.user"
+            ng-bind="vm.toolkit.user.displayName"></span>
+      <span ng-if="!vm.toolkit.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.toolkit.content"></p>
+</section>

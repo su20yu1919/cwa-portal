@@ -1,7 +1,7 @@
 ## Introduction
 
-Welcome to the CWA Aquahacking portal. This portal is developed by DigitalC for the purpose of storing and redirecting data for the
-2016 Aquahacking event. This document gives a basic overview of different components of the portal and offer developers
+Welcome to the CWA Eriehacking portal. This portal is developed by DigitalC for the purpose of storing and redirecting data for the
+2017 Erie Hack event. This document gives a basic overview of different components of the portal and offer developers
 basic instructions on how to manage and modify features in the portal.
 
 ## Module Overview
